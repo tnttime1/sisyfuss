@@ -1,2 +1,2 @@
-# sisyphus
+# sisyfuss
 a rocky game probs

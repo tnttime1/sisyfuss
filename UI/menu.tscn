@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://tf1bhjwyadi0"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -168.00003
+offset_top = 152.0
+offset_right = -108.34485
+offset_bottom = 219.99998
+grow_horizontal = 2
+scale = Vector2(5.8, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[b]TITLE[/b]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -204.0
+offset_top = -258.0
+offset_right = 204.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer2"]
+layout_mode = 2
+columns = 2
+
+[node name="StartButton" type="Button" parent="MarginContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "START"
+
+[node name="Button2" type="Button" parent="MarginContainer2/GridContainer"]
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="MarginContainer2/GridContainer"]
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="MarginContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
