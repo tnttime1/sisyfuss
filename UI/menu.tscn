@@ -21,18 +21,19 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -168.00003
-offset_top = 152.0
-offset_right = -108.34485
-offset_bottom = 219.99998
+offset_left = -216.0
+offset_top = 149.0
+offset_right = 190.34485
+offset_bottom = 216.99998
 grow_horizontal = 2
-scale = Vector2(5.8, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/bold_font_size = 48
 bbcode_enabled = true
 text = "[b]TITLE[/b]"
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 

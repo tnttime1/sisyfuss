@@ -1,9 +1,5 @@
 extends CharacterBody2D
 
-
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
 var direction: Vector2
 @export var speed:int = 100
 @onready var system: Node = $".."

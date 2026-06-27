@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c34dbur3wgb8b"]
+
+[ext_resource type="Texture2D" uid="uid://bqb12or0wgy2d" path="res://sisyfuss_demo1.png" id="1_kqwar"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkifn"]
+size = Vector2(32, 32)
+
+[node name="Bolder" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kqwar")
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fkifn")
