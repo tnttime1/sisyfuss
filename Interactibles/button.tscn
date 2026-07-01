@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqu3ftnvydkss"]
+
+[ext_resource type="Script" uid="uid://d22tn2yocrrqe" path="res://Interactibles/button.gd" id="1_jo4h0"]
+[ext_resource type="Texture2D" uid="uid://bqb12or0wgy2d" path="res://sisyfuss_demo1.png" id="2_v2vg2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b04bs"]
+size = Vector2(32, 32)
+
+[node name="Button" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_jo4h0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_v2vg2")
+region_enabled = true
+region_rect = Rect2(128, 0, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_b04bs")

@@ -72,7 +72,7 @@ func save_file(save_data, save_path:String):
 	file.close()
 
 #checks where objects can move and if it pushes a different object with it
-func can_move(interactible: Node2D, direction:Vector2) -> bool:
+func can_move(interactible: Node2D, direction:Vector2, movement_delay: float) -> float:
 	if object_at_tile.get(interactible) == null:
 		register_interactible(interactible)
 		
@@ -81,25 +81,38 @@ func can_move(interactible: Node2D, direction:Vector2) -> bool:
 	var horizontal_cell =  current_cell + Vector2i(int(direction.x),0);
 	var vertical_cell =  current_cell + Vector2i(0, int(direction.y));
 
-	var valid_move = (walls.get_cell_source_id(target_cell) == -1 and # checking if the target tile we want to go to is empty
-		(walls.get_cell_source_id(horizontal_cell) == -1 or # checking if there is a horizontal or vertical opening to it
-		walls.get_cell_source_id(vertical_cell) == -1))
+	var valid_move:bool
+
+	if direction.x !=0 and direction.y !=0:
+		valid_move = walls.get_cell_source_id(target_cell) == -1 and (
+			(walls.get_cell_source_id(horizontal_cell) == -1 and (tile_occupied.get(horizontal_cell) == null or not tile_occupied[horizontal_cell].obstructs)) or 
+			(walls.get_cell_source_id(vertical_cell) == -1 and (tile_occupied.get(vertical_cell) == null or not tile_occupied[vertical_cell].obstructs))
+			)
+	else:
+		valid_move = walls.get_cell_source_id(target_cell) == -1
+
 	
 	if !valid_move:
-		return false
+		return -1
 	
-	if tile_occupied.get(target_cell) !=null:
-		if !await tile_occupied[target_cell].try_move(direction):
-			return false
-
+	if tile_occupied.get(target_cell) !=null and tile_occupied[target_cell].obstructs:
+		var tween_dur = await tile_occupied[target_cell].try_move(direction)
+		if tween_dur == -1:
+			return -1
+		movement_delay = max(tween_dur,movement_delay)
+		
+	if interactible.name.contains("Bolder") and tile_occupied.get(target_cell) != null and tile_occupied[target_cell].name == "Button":
+		check_victory()
 	tile_occupied.erase(object_at_tile[interactible])
 	tile_occupied[target_cell] = interactible
 	object_at_tile[interactible] = target_cell
-	
-	return true
+	return movement_delay
 
 #adds new interactible object to the system, such as players, bolders or chests and the coordinate of the object
 func register_interactible(interactible: Node2D):
-	var grid_coordinate = Vector2i( ((interactible.position - Vector2(tile_size/2.0,tile_size/2.0)) /tile_size).round())
+	var grid_coordinate = Vector2i( ((interactible.position - Vector2(tile_size/2.0,tile_size/2.0)) /tile_size).floor())
 	tile_occupied[grid_coordinate] = interactible
 	object_at_tile[interactible] = grid_coordinate
+
+func check_victory():
+	OS.alert("you win","VICTORY!!!")
